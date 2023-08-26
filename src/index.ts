@@ -19,12 +19,43 @@ app.get('/products', (req: Request, res: Response) => {
     res.json(products)
 })
 
+app.post('/products', (req: Request, res: Response) => {
+    const newProduct = { id: +(new Date()), title: req.body.title }
+    products.push(newProduct)
+    res.status(201)
+    res.json(newProduct)
+})
+
 app.get('/products/:productTitle', (req: Request, res: Response) => {
     const productTitle = req.params.productTitle
     const product = products.find(p => p.title === productTitle)
     if (product) {
         res.json(product)
 
+    }
+    else {
+        res.sendStatus(404)
+    }
+})
+
+app.get('/products/:id', (req: Request, res: Response) => {
+
+    const product = products.find(p => p.id === +req.params.id)
+    if (product) {
+        res.json(product)
+    }
+    else {
+        res.sendStatus(404)
+    }
+})
+
+app.put('/products/:id', (req: Request, res: Response) => {
+
+    const product = products.find(p => p.id === +req.params.id)
+    if (product) {
+        product.title = req.body.title
+        res.status(200)
+        res.json(product)
     }
     else {
         res.sendStatus(404)
