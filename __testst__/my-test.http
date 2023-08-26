@@ -1,0 +1,36 @@
+//GET ALL PRODUCTS
+
+GET http://localhost:5000/products
+
+
+###
+// GET ONE PRODUCTS
+
+GET http://localhost:5000/products/2
+
+
+
+###
+// POST products
+POST http://localhost:5000/products
+Content-Type: application/json; charset=utf-8
+
+{
+  "title": "test"
+  }
+
+###
+
+//UPDATE products
+
+PUT  http://localhost:5000/products/1
+Content-Type: application/json; charset=utf-8
+
+{
+  "title": "test"
+  }
+
+###
+//DELETE product
+
+DELETE  http://localhost:5000/adresses/2
